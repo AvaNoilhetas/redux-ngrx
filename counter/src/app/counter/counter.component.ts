@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { decrement, increment } from '../counter.actions';
+import { counterState } from '../counter.model';
 
 @Component({
   selector: 'app-counter',
   templateUrl: './counter.component.html',
 })
 export class CounterComponent {
-  count$: Observable<number>;
+  counter$: Observable<counterState>;
 
-  constructor(private store: Store<{ count: number }>) {
-    this.count$ = store.select('count');
+  constructor(private store: Store<{ counter: counterState }>) {
+    this.counter$ = store.pipe(select('counter'));
+    this.counter$.subscribe((res) => console.log(res));
   }
 
   increment() {
