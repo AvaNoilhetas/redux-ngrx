@@ -8,6 +8,6 @@ export const initialState: counterState = {
 
 export const counterReducer = createReducer(
   initialState,
-  on(increment, (state) => ({ ...state, count: state.count + 1 })),
-  on(decrement, (state) => ({ ...state, count: state.count - 1 }))
+  on(increment, (state) => ({ count: state.count + 1 })),
+  on(decrement, (state) => ({ count: state.count - 1 }))
 );
